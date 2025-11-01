@@ -48,7 +48,6 @@
     
     .content-wrap {
       margin-left: 0;
-      transition: margin-left 0.3s ease;
       padding: 2rem 1rem;
     }
     
@@ -63,6 +62,11 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: left 0.3s ease;
+    }
+    
+    /* Menu button dịch sang phải khi menu mở */
+    .menu-toggle.shifted {
+      left: calc(280px + 1rem);
     }
     
     .overlay {
@@ -83,41 +87,33 @@
       visibility: visible;
     }
     
-    /* Desktop: Shift content when menu opens */
-    @media (min-width: 1024px) {
-      .content-wrap.shifted {
-        margin-left: 280px;
-      }
-      
-      .menu-toggle.shifted {
-        left: calc(280px + 1rem);
-      }
-    }
-    
-    /* Tablet & Mobile: Overlay menu, no shift */
-    @media (max-width: 1023px) {
+    /* Responsive cho mobile */
+    @media (max-width: 768px) {
       .sidebar {
         width: 280px;
-        max-width: 85vw; /* Không chiếm quá 85% màn hình */
+        max-width: 85vw;
       }
       
       .content-wrap {
-        padding: 1rem 0.5rem; /* Padding nhỏ hơn trên mobile */
+        padding: 1rem 0.5rem;
       }
       
-      /* Menu toggle luôn ở vị trí cố định trên mobile */
       .menu-toggle {
         top: 0.75rem;
         left: 0.75rem;
       }
       
       .menu-toggle.shifted {
-        left: 0.75rem; /* Không dịch trên mobile */
+        left: calc(280px + 0.75rem);
       }
       
-      /* Header title responsive */
+      header {
+        padding-top: 3.5rem !important;
+        padding-bottom: 2rem !important;
+      }
+      
       header h1 {
-        font-size: 2rem !important; /* Nhỏ hơn trên mobile */
+        font-size: 2rem !important;
         padding: 0 1rem;
       }
       
@@ -127,7 +123,6 @@
       }
     }
     
-    /* Small Mobile: Extra optimizations */
     @media (max-width: 640px) {
       .sidebar {
         width: 260px;
@@ -135,27 +130,20 @@
         padding: 1rem;
       }
       
-      .content-wrap {
-        padding: 1rem 0.5rem;
+      .menu-toggle.shifted {
+        left: calc(260px + 0.75rem);
       }
       
       .card {
         padding: 1rem;
       }
       
-      /* Country cards responsive */
       .country-card {
         padding: 1.5rem 1rem;
       }
       
       .country-flag {
         font-size: 2.5rem !important;
-      }
-      
-      /* Header adjustments */
-      header {
-        padding-top: 3.5rem !important; /* Tránh bị menu che */
-        padding-bottom: 2rem !important;
       }
       
       header h1 {
@@ -167,12 +155,10 @@
         font-size: 0.9rem !important;
       }
       
-      /* Section headers */
       .section-title {
         font-size: 1.25rem !important;
       }
       
-      /* Modal adjustments */
       .modal-header {
         padding: 1.5rem 1rem;
       }
@@ -185,7 +171,6 @@
         font-size: 1.75rem !important;
       }
       
-      /* Filter controls */
       .flex.gap-2.items-center.flex-wrap {
         gap: 0.5rem !important;
       }
@@ -198,10 +183,13 @@
       }
     }
     
-    /* Extra Small Devices */
     @media (max-width: 375px) {
       .sidebar {
         width: 240px;
+      }
+      
+      .menu-toggle.shifted {
+        left: calc(240px + 0.75rem);
       }
       
       header h1 {
@@ -215,7 +203,6 @@
       }
     }
     
-    /* Landscape mobile */
     @media (max-height: 500px) and (orientation: landscape) {
       .sidebar {
         padding: 0.75rem;
@@ -255,6 +242,7 @@
       .modal-content {
         margin-top: 1rem;
         border-radius: 0.75rem;
+        max-height: 95vh;
       }
     }
     
@@ -401,7 +389,7 @@
       border-radius: 4px;
     }
 </style>
-
+  
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
   

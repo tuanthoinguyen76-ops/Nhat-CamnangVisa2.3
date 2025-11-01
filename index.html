@@ -52,11 +52,6 @@
       padding: 2rem 1rem;
     }
     
-    /* Thêm class shifted cho content-wrap */
-    .content-wrap.shifted {
-      margin-left: 280px;
-    }
-    
     .menu-toggle {
       position: fixed;
       top: 1rem;
@@ -68,11 +63,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: left 0.3s ease;
-    }
-    
-    /* Thêm class shifted cho menu-toggle */
-    .menu-toggle.shifted {
-      left: calc(280px + 1rem);
     }
     
     .overlay {
@@ -93,17 +83,150 @@
       visibility: visible;
     }
     
-    /* Responsive: Tắt shift trên mobile */
-    @media (max-width: 768px) {
+    /* Desktop: Shift content when menu opens */
+    @media (min-width: 1024px) {
       .content-wrap.shifted {
-        margin-left: 0;
+        margin-left: 280px;
       }
       
       .menu-toggle.shifted {
-        left: 1rem;
+        left: calc(280px + 1rem);
       }
     }
     
+    /* Tablet & Mobile: Overlay menu, no shift */
+    @media (max-width: 1023px) {
+      .sidebar {
+        width: 280px;
+        max-width: 85vw; /* Không chiếm quá 85% màn hình */
+      }
+      
+      .content-wrap {
+        padding: 1rem 0.5rem; /* Padding nhỏ hơn trên mobile */
+      }
+      
+      /* Menu toggle luôn ở vị trí cố định trên mobile */
+      .menu-toggle {
+        top: 0.75rem;
+        left: 0.75rem;
+      }
+      
+      .menu-toggle.shifted {
+        left: 0.75rem; /* Không dịch trên mobile */
+      }
+      
+      /* Header title responsive */
+      header h1 {
+        font-size: 2rem !important; /* Nhỏ hơn trên mobile */
+        padding: 0 1rem;
+      }
+      
+      header p {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+      }
+    }
+    
+    /* Small Mobile: Extra optimizations */
+    @media (max-width: 640px) {
+      .sidebar {
+        width: 260px;
+        max-width: 80vw;
+        padding: 1rem;
+      }
+      
+      .content-wrap {
+        padding: 1rem 0.5rem;
+      }
+      
+      .card {
+        padding: 1rem;
+      }
+      
+      /* Country cards responsive */
+      .country-card {
+        padding: 1.5rem 1rem;
+      }
+      
+      .country-flag {
+        font-size: 2.5rem !important;
+      }
+      
+      /* Header adjustments */
+      header {
+        padding-top: 3.5rem !important; /* Tránh bị menu che */
+        padding-bottom: 2rem !important;
+      }
+      
+      header h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.2;
+      }
+      
+      header p {
+        font-size: 0.9rem !important;
+      }
+      
+      /* Section headers */
+      .section-title {
+        font-size: 1.25rem !important;
+      }
+      
+      /* Modal adjustments */
+      .modal-header {
+        padding: 1.5rem 1rem;
+      }
+      
+      .modal-body {
+        padding: 1rem 0.75rem;
+      }
+      
+      .modal-header h2 {
+        font-size: 1.75rem !important;
+      }
+      
+      /* Filter controls */
+      .flex.gap-2.items-center.flex-wrap {
+        gap: 0.5rem !important;
+      }
+      
+      .flex.gap-2.items-center.flex-wrap input,
+      .flex.gap-2.items-center.flex-wrap select,
+      .flex.gap-2.items-center.flex-wrap button {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+      }
+    }
+    
+    /* Extra Small Devices */
+    @media (max-width: 375px) {
+      .sidebar {
+        width: 240px;
+      }
+      
+      header h1 {
+        font-size: 1.5rem !important;
+      }
+      
+      .menu-toggle {
+        padding: 0.5rem;
+        top: 0.5rem;
+        left: 0.5rem;
+      }
+    }
+    
+    /* Landscape mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .sidebar {
+        padding: 0.75rem;
+      }
+      
+      .sidebar nav {
+        font-size: 0.875rem;
+      }
+    }
+    
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -121,6 +244,18 @@
       align-items: flex-start;
       justify-content: center;
       padding: 2rem 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .modal.active {
+        padding: 1rem 0.5rem;
+        align-items: flex-start;
+      }
+      
+      .modal-content {
+        margin-top: 1rem;
+        border-radius: 0.75rem;
+      }
     }
     
     .modal-content {
@@ -265,19 +400,8 @@
       background: #667eea;
       border-radius: 4px;
     }
-
-    @media (max-width: 768px) {
-      .modal-content {
-        max-height: 95vh;
-      }
-      .modal-header {
-        padding: 1.5rem;
-      }
-      .modal-body {
-        padding: 1rem;
-      }
-    }
-  </style>
+</style>
+  
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
   
